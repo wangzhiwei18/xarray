@@ -78,7 +78,7 @@ indices_dict = {
         np.arange(10, dtype="complex128") + 1.0j * np.arange(10, dtype="complex128")
     ),
     "categorical": CategoricalIndex(list("abcd") * 2),
-    "interval": IntervalIndex.from_breaks(np.linspace(0, 100, num=11)),
+    "interval": IntervalIndex.from_breaks(np.linspace(0, 100, num=11).astype(int)),
     "empty": Index([]),
     # "tuples": MultiIndex.from_tuples(zip(["foo", "bar", "baz"], [1, 2, 3])),
     # "mi-with-dt64tz-level": _create_mi_with_dt64tz_level(),
@@ -104,7 +104,7 @@ def index_flat(request):
     index fixture, but excluding MultiIndex cases.
     """
     key = request.param
-    return indices_dict[key].copy()
+    return indices_dict[key]
 
 
 @pytest.fixture

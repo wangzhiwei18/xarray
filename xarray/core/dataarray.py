@@ -4362,7 +4362,7 @@ class DataArray(
             - Dimensions cannot be included in both ``region`` and
               ``append_dim`` at the same time. To create empty arrays to fill
               in with ``region``, use a separate call to ``to_zarr()`` with
-              ``compute=False``. See "Modifying existing Zarr stores" in
+              ``compute=False``. See "Appending to existing Zarr stores" in
               the reference documentation for full details.
 
             Users are expected to ensure that the specified region aligns with
@@ -6857,7 +6857,7 @@ class DataArray(
         >>> da
         <xarray.DataArray (time: 1827)> Size: 15kB
         array([0.000e+00, 1.000e+00, 2.000e+00, ..., 1.824e+03, 1.825e+03,
-               1.826e+03])
+               1.826e+03], shape=(1827,))
         Coordinates:
           * time     (time) datetime64[ns] 15kB 2000-01-01 2000-01-02 ... 2004-12-31
         >>> da.groupby("time.dayofyear") - da.groupby("time.dayofyear").mean("time")

@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+from typing import Union, Any as TypingAny
 import pickle
 import re
 import sys
@@ -724,7 +724,7 @@ class TestDataArray:
 
     def test_setitem(self) -> None:
         # basic indexing should work as numpy's indexing
-        tuples = [
+        tuples: list[tuple[Any, ...]] = [  # 或使用 tuple[Any, ...]
             (0, 0),
             (0, slice(None, None)),
             (slice(None, None), slice(None, None)),
@@ -3608,8 +3608,12 @@ class TestDataArray:
         return_data = array.to_numpy()
         coords_data = np.array(["a", "b"])
         if data == "list" or data is True:
-            return_data = return_data.tolist()
-            coords_data = coords_data.tolist()
+            return_data_list: Union[str, list[TypingAny]] = return_data.tolist()
+            coords_data_list: Union[str, list[TypingAny]] = coords_data.tolist()
+    
+            # 更新变量
+            return_data = return_data_list
+            coords_data = coords_data_list
 
         expected: dict[str, Any] = {
             "name": "foo",

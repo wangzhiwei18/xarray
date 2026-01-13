@@ -179,7 +179,7 @@ def polyfit(
     lhs = np.vander(x, order)
 
     if rcond is None:
-        rcond = x.shape[0] * np.finfo(x.dtype).eps
+        rcond = float(x.shape[0] * np.finfo(x.dtype).eps)
 
     # Weights:
     if w is not None:
@@ -288,7 +288,7 @@ def polyfit(
                     raise ValueError(
                         "The number of data points must exceed order to scale the covariance matrix."
                     )
-                fac = variables[name + "polyfit_residuals"] / (x.shape[0] - order)
+                fac = (variables[name + "polyfit_residuals"] / (x.shape[0] - order)).astype(int)
             variables[name + "polyfit_covariance"] = (
                 Variable(data=Vbase, dims=("cov_i", "cov_j")) * fac
             )

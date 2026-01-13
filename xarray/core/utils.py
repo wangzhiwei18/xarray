@@ -744,7 +744,7 @@ def iterable_of_hashable(v: Any) -> TypeGuard[Iterable[Hashable]]:
     return all(hashable(elm) for elm in it)
 
 
-def decode_numpy_dict_values(attrs: Mapping[K, V]) -> dict[K, V]:
+def decode_numpy_dict_values(attrs: Mapping[K, Any]) -> dict[K, Any]:
     """Convert attribute values from numpy objects to native Python objects,
     for use in to_dict
     """
