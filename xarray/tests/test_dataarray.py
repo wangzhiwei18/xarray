@@ -3605,11 +3605,11 @@ class TestDataArray:
         )
         array.encoding = encoding_data
 
-        return_data = array.to_numpy()
-        coords_data = np.array(["a", "b"])
+        return_data: Union[str, list[TypingAny]] = array.to_numpy()
+        coords_data: Union[str, list[TypingAny]] = np.array(["a", "b"])
         if data == "list" or data is True:
-            return_data: Union[str, list[TypingAny]] = return_data.tolist()
-            coords_data: Union[str, list[TypingAny]] = coords_data.tolist()
+            return_data = return_data.tolist()
+            coords_data = coords_data.tolist()
 
         expected: dict[str, Any] = {
             "name": "foo",
