@@ -3608,12 +3608,8 @@ class TestDataArray:
         return_data = array.to_numpy()
         coords_data = np.array(["a", "b"])
         if data == "list" or data is True:
-            return_data_list: Union[str, list[TypingAny]] = return_data.tolist()
-            coords_data_list: Union[str, list[TypingAny]] = coords_data.tolist()
-    
-            # 更新变量
-            return_data = return_data_list
-            coords_data = coords_data_list
+            return_data: Union[str, list[TypingAny]] = return_data.tolist()
+            coords_data: Union[str, list[TypingAny]] = coords_data.tolist()
 
         expected: dict[str, Any] = {
             "name": "foo",

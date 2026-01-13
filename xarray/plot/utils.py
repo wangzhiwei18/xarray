@@ -1735,7 +1735,8 @@ def _add_legend(
             # values correctly. Order might be different because
             # legend_elements uses np.unique instead of pd.unique,
             # FacetGrid.add_legend might have troubles with this:
-            hdl, lbl = [], []
+            hdl: list[Any] = []
+            lbl: list[Any] = []
             for p in primitive:
                 hdl_, lbl_ = legend_elements(p, prop, num="auto", func=huesizeplt.func)
                 hdl += hdl_
@@ -1744,8 +1745,8 @@ def _add_legend(
             # Only save unique values:
             u, ind = np.unique(lbl, return_index=True)
             ind = np.argsort(ind)
-            lbl: list[Any] = list(u[ind].tolist())
-            hdl: list[Any] = list(np.array(hdl)[ind].tolist())
+            lbl = list(u[ind].tolist())
+            hdl = list(np.array(hdl)[ind].tolist())
 
             # Add a subtitle:
             hdl, lbl = _legend_add_subtitle(hdl, lbl, label_from_attrs(huesizeplt.data))
