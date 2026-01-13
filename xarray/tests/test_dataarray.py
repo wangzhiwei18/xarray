@@ -3605,8 +3605,8 @@ class TestDataArray:
         )
         array.encoding = encoding_data
 
-        return_data: Union[str, list[TypingAny]] = array.to_numpy()
-        coords_data: Union[str, list[TypingAny]] = np.array(["a", "b"])
+        return_data: TypingAny = array.to_numpy()
+        coords_data: TypingAny = np.array(["a", "b"])
         if data == "list" or data is True:
             return_data = return_data.tolist()
             coords_data = coords_data.tolist()
